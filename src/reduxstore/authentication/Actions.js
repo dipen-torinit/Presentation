@@ -5,13 +5,10 @@ import {
   PASSWORD,
   LOGINCHECK_TIMEOUT,
   SIGNUP_TIMEOUT,
+  SIGNIN_TIMEOUT,
 } from "../../common/Const";
-import {
-  getValue,
-  getValueSynch,
-  setValue,
-  setValueSynch,
-} from "../../common/Storage";
+import { getValueSynch, setValue, setValueSynch } from "../../common/Storage";
+import { LOADING } from "../users/ActionType";
 
 export const checkIfAlreadySignIn = () => {
   return function (dispatch) {
@@ -30,6 +27,10 @@ export const checkIfAlreadySignIn = () => {
 
 export const signUp = ({ username, password }) => {
   return function (dispatch) {
+    dispatch({
+      type: LOADING,
+    });
+
     setTimeout(function () {
       (async () => {
         await setValueSynch(LOGINID, username);
@@ -46,18 +47,23 @@ export const signUp = ({ username, password }) => {
 
 export const signIn = ({ username, password }) => {
   return function (dispatch) {
-    (async () => {
-      const uname = await getValueSynch(LOGINID);
-      const pwd = await getValueSynch(PASSWORD);
+    dispatch({
+      type: LOADING,
+    });
+    setTimeout(function () {
+      (async () => {
+        const uname = await getValueSynch(LOGINID);
+        const pwd = await getValueSynch(PASSWORD);
 
-      const isSucceed = username === uname && password === pwd;
+        const isSucceed = username === uname && password === pwd;
 
-      await setValueSynch(SIGNIN_SUCESSFULL, isSucceed ? "true" : "false");
-      dispatch({
-        type: SIGNIN,
-        result: isSucceed,
-      });
-    })();
+        await setValueSynch(SIGNIN_SUCESSFULL, isSucceed ? "true" : "false");
+        dispatch({
+          type: SIGNIN,
+          result: isSucceed,
+        });
+      })();
+    }, SIGNIN_TIMEOUT);
   };
 };
 

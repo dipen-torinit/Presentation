@@ -35,7 +35,7 @@ function AppBase() {
     dispatch(authAction.checkIfAlreadySignIn());
   }, []);
 
-  if (auth.isLoading) {
+  if (auth.isAuthenticating) {
     return <SplashScreen />;
   }
 

@@ -1,2 +1,2 @@
-export const GET_USER = "GET_USER";
-export const LOADING = "LOADING";
+export const GET_USER = "USER_GET_USER";
+export const LOADING = "USER_LOADING";

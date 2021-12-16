@@ -1,16 +1,6 @@
 import * as React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import * as userAction from "../reduxstore/users/Actions";
-import { useEffect } from "react";
 
-import {
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-} from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 
 export function EmployeeDetailScreen({ route }) {
   const { avatar, first_name, last_name, email } = route.params.data;

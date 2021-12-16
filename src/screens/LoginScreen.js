@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Text, View, Button, StyleSheet, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
+import ProgressBar from "../components/ProgressBar";
 import * as authAction from "../reduxstore/authentication/Actions";
 
 export function LoginScreen({ route, navigation }) {
@@ -35,6 +36,7 @@ export function LoginScreen({ route, navigation }) {
       {auth.hasError && (
         <Text style={styles.textError}>Please check input</Text>
       )}
+      {auth.isLoading && <ProgressBar />}
       <TouchableOpacity
         style={styles.loginbutton}
         onPress={() => {

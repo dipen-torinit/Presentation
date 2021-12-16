@@ -5,3 +5,4 @@ export const SIGNIN_SUCESSFULL = "SIGNIN_SUCESSFULL";
 
 export const LOGINCHECK_TIMEOUT = 2000;
 export const SIGNUP_TIMEOUT = 1000;
+export const SIGNIN_TIMEOUT = 3000;
